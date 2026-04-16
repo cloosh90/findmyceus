@@ -1,0 +1,357 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Layout title="Privacy Policy & Terms of Use — FindMyCEUs" description="FindMyCEUs privacy policy and terms of use.">
+  <style>
+    .legal-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .legal-nav {
+      position: sticky;
+      top: 24px;
+    }
+    .legal-nav-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--text3);
+      margin-bottom: 12px;
+    }
+    .legal-nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .legal-nav a {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text2);
+      padding: 6px 10px;
+      border-radius: 7px;
+      transition: background .15s, color .15s;
+    }
+    .legal-nav a:hover { background: var(--bg2); color: var(--text); }
+    .legal-nav a.section-link {
+      font-size: 12px;
+      color: var(--text3);
+      padding-left: 20px;
+    }
+    .legal-nav .doc-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--accent);
+      padding: 10px 10px 4px;
+      margin-top: 8px;
+    }
+
+    .legal-content { min-width: 0; }
+
+    .legal-doc {
+      margin-bottom: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    .legal-doc:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .legal-doc .doc-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .legal-doc h1 {
+      font-family: var(--display);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .legal-doc .effective-date {
+      font-size: 13px;
+      color: var(--text3);
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .legal-doc h2 {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      margin: 36px 0 12px;
+      color: var(--text);
+      scroll-margin-top: 24px;
+    }
+    .legal-doc h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: var(--text);
+    }
+    .legal-doc p {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .legal-doc ul, .legal-doc ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    .legal-doc li {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 6px;
+    }
+    .legal-doc a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .legal-doc strong { color: var(--text); font-weight: 600; }
+
+    .legal-highlight {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .legal-highlight strong { color: var(--accent); }
+
+    .legal-notice {
+      background: var(--amber-light);
+      border: 1.5px solid #FDE68A;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 32px;
+      font-size: 13.5px;
+      color: var(--amber);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .legal-wrap { grid-template-columns: 1fr; gap: 0; }
+      .legal-nav { display: none; }
+      .legal-doc h1 { font-size: 26px; }
+    }
+  </style>
+
+  <Nav currentPage="legal" />
+
+  <div class="page-hero" style="padding-bottom:24px">
+    <div class="page-hero-inner">
+      <p style="font-size:13px;color:var(--text3);margin-bottom:6px;margin-top:0">Legal</p>
+      <h1 style="margin-bottom:0">Privacy Policy &amp; Terms of Use</h1>
+    </div>
+  </div>
+
+  <div class="legal-wrap">
+
+    <!-- Sidebar navigation -->
+    <aside class="legal-nav">
+      <div class="legal-nav-title">On this page</div>
+      <ul>
+        <li><div class="doc-label">Privacy Policy</div></li>
+        <li><a href="#privacy-overview" class="section-link">Overview</a></li>
+        <li><a href="#privacy-data-collected" class="section-link">Data we collect</a></li>
+        <li><a href="#privacy-how-used" class="section-link">How we use it</a></li>
+        <li><a href="#privacy-storage" class="section-link">Data storage</a></li>
+        <li><a href="#privacy-newsletter" class="section-link">Newsletter</a></li>
+        <li><a href="#privacy-third-party" class="section-link">Third-party links</a></li>
+        <li><a href="#privacy-your-rights" class="section-link">Your rights</a></li>
+        <li><a href="#privacy-children" class="section-link">Children</a></li>
+        <li><a href="#privacy-contact" class="section-link">Contact</a></li>
+
+        <li><div class="doc-label">Terms of Use</div></li>
+        <li><a href="#terms-overview" class="section-link">Overview</a></li>
+        <li><a href="#terms-directory" class="section-link">Directory disclaimer</a></li>
+        <li><a href="#terms-third-party" class="section-link">Third-party sites</a></li>
+        <li><a href="#terms-accounts" class="section-link">User accounts</a></li>
+        <li><a href="#terms-newsletter" class="section-link">Newsletter</a></li>
+        <li><a href="#terms-ip" class="section-link">Intellectual property</a></li>
+        <li><a href="#terms-liability" class="section-link">Limitation of liability</a></li>
+        <li><a href="#terms-changes" class="section-link">Changes</a></li>
+        <li><a href="#terms-contact" class="section-link">Contact</a></li>
+      </ul>
+    </aside>
+
+    <!-- Legal documents -->
+    <main class="legal-content">
+
+      <div class="legal-notice">
+        <strong>Note:</strong> These documents were prepared with AI assistance and reflect the current operation of FindMyCEUs as a free, independent directory. We recommend consulting a licensed attorney before launching publicly to ensure these documents meet the specific legal requirements for your jurisdiction and business model.
+      </div>
+
+      <!-- PRIVACY POLICY -->
+      <div class="legal-doc" id="privacy">
+
+        <div class="doc-eyebrow">Privacy Policy</div>
+        <h1>Your privacy, plainly explained.</h1>
+        <p class="effective-date">Effective date: April 16, 2026 &nbsp;&middot;&nbsp; Last updated: April 16, 2026</p>
+
+        <div class="legal-highlight">
+          <strong>The short version:</strong> We collect only what we need to run this site &mdash; your email if you subscribe to our newsletter. We do not sell your data. Ever.
+        </div>
+
+        <h2 id="privacy-overview">1. Who we are</h2>
+        <p>FindMyCEUs (<strong>"we," "our," or "us"</strong>) is an independent online directory that helps medical coders find continuing education (CEU) courses. We do not provide courses ourselves &mdash; we aggregate and link to courses offered by third-party providers.</p>
+        <p>This Privacy Policy explains what information we collect, how we use it, and what choices you have. By using FindMyCEUs, you agree to the practices described here.</p>
+
+        <h2 id="privacy-data-collected">2. Information we collect</h2>
+
+        <h3>Information you give us directly</h3>
+        <ul>
+          <li><strong>Email address</strong> &mdash; if you subscribe to our newsletter.</li>
+        </ul>
+
+        <h3>Information collected automatically</h3>
+        <p>We do not currently use tracking cookies, analytics platforms, or third-party advertising scripts. If this changes, this policy will be updated before any such tools are deployed.</p>
+        <p>Standard web server logs may capture IP addresses and browser information when you visit the site, as is typical for any website. We do not use this information to identify you personally.</p>
+
+        <h2 id="privacy-how-used">3. How we use your information</h2>
+        <ul>
+          <li><strong>To send our newsletter</strong> &mdash; if you subscribed. This includes new course alerts, free CEU roundups, and renewal reminders. We do not send marketing emails on behalf of third parties.</li>
+          <li><strong>To improve the directory</strong> &mdash; we may review aggregate, anonymized usage patterns (e.g., which filters are used most) to improve the site.</li>
+        </ul>
+        <p><strong>We do not sell, rent, trade, or share your personal information with any third party for their marketing purposes.</strong></p>
+
+        <h2 id="privacy-storage">4. How and where your data is stored</h2>
+        <p>FindMyCEUs is a static site. The only data we store on our servers is newsletter email addresses (via our email service provider).</p>
+
+        <h2 id="privacy-newsletter">5. Newsletter and email communications</h2>
+        <p>If you subscribe to the FindMyCEUs newsletter, we collect your email address solely for the purpose of sending you that newsletter. Specifically:</p>
+        <ul>
+          <li>We will not use your email address to send unrelated marketing.</li>
+          <li>We will not share your email address with third-party course providers or advertisers.</li>
+          <li>You can unsubscribe at any time using the unsubscribe link in any email we send.</li>
+          <li>We may use a third-party email service provider (such as Beehiiv or a similar platform) to manage and send newsletters. That provider will have access to your email address solely for this purpose and is bound by its own privacy policies.</li>
+        </ul>
+
+        <h2 id="privacy-third-party">6. Third-party links and course providers</h2>
+        <p>FindMyCEUs is a directory of links to courses hosted by third-party providers. When you click a course card and visit an external provider's website, you leave FindMyCEUs entirely. We have no control over those sites and are not responsible for their privacy practices.</p>
+        <p>We strongly encourage you to review the privacy policy of any third-party site before providing them with your personal information, creating an account, or making a purchase.</p>
+        <p>FindMyCEUs is not affiliated with, endorsed by, or sponsored by AAPC, AHIMA, CMS, or any other credentialing or regulatory body listed on this site.</p>
+
+        <h2 id="privacy-your-rights">7. Your rights and choices</h2>
+        <ul>
+          <li><strong>Unsubscribe from email</strong> &mdash; Use the unsubscribe link in any newsletter email, or contact us directly.</li>
+          <li><strong>Do Not Track</strong> &mdash; We respect browser Do Not Track signals. We do not track users across websites.</li>
+        </ul>
+
+        <h2 id="privacy-children">8. Children's privacy</h2>
+        <p>FindMyCEUs is intended for adult healthcare professionals. We do not knowingly collect personal information from anyone under the age of 13. If you believe a child under 13 has provided us with personal information, please contact us and we will promptly delete it.</p>
+
+        <h2 id="privacy-changes">9. Changes to this policy</h2>
+        <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. If changes are material, we will notify newsletter subscribers by email. Continued use of FindMyCEUs after changes are posted constitutes your acceptance of the updated policy.</p>
+
+        <h2 id="privacy-contact">10. Contact us</h2>
+        <p>Questions about this Privacy Policy or how we handle your information? Reach us at:</p>
+        <p><strong>Email:</strong> <a href="mailto:privacy@findmyceus.com">privacy@findmyceus.com</a></p>
+
+      </div><!-- /privacy policy -->
+
+
+      <!-- TERMS OF USE -->
+      <div class="legal-doc" id="terms">
+
+        <div class="doc-eyebrow">Terms of Use</div>
+        <h1>Terms of Use</h1>
+        <p class="effective-date">Effective date: April 16, 2026 &nbsp;&middot;&nbsp; Last updated: April 16, 2026</p>
+
+        <div class="legal-highlight">
+          <strong>The short version:</strong> FindMyCEUs is a free directory. We list courses but don't provide them. We can't guarantee course prices or availability are always current. Clicking a course takes you to a third-party site &mdash; their rules apply there. Use this site in good faith and we'll keep it free for everyone.
+        </div>
+
+        <h2 id="terms-overview">1. Acceptance of terms</h2>
+        <p>By accessing or using FindMyCEUs ("the Site," "we," "us," or "our"), you agree to be bound by these Terms of Use. If you do not agree, please do not use the Site.</p>
+        <p>We reserve the right to modify these Terms at any time. Continued use of the Site after changes are posted constitutes acceptance of the updated Terms.</p>
+
+        <h2 id="terms-directory">2. What FindMyCEUs is &mdash; and isn't</h2>
+        <p>FindMyCEUs is an <strong>independent course directory</strong>. We aggregate and organize information about continuing education courses for medical coders from various third-party providers.</p>
+        <ul>
+          <li>We <strong>do not</strong> provide, sell, or deliver any courses ourselves.</li>
+          <li>We <strong>do not</strong> award or track CEU credits with any credentialing body.</li>
+          <li>We are <strong>not affiliated with, endorsed by, or sponsored by</strong> AAPC, AHIMA, CMS, or any other credentialing organization, accrediting body, or government agency referenced on this site.</li>
+          <li>Course listings, prices, CEU values, and availability are sourced from publicly available information and may change without notice. <strong>Always verify current details directly with the course provider before registering or purchasing.</strong></li>
+        </ul>
+
+        <h2 id="terms-accuracy">3. Accuracy of course information</h2>
+        <p>We make reasonable efforts to ensure that course listings are accurate and up to date. However, we cannot guarantee that all information is current, complete, or error-free. Course prices, availability, dates, CEU values, and credential eligibility are set by the course providers and may change at any time.</p>
+        <p>FindMyCEUs is not responsible for any losses, costs, or disappointments arising from reliance on course information displayed on this Site. <strong>Always confirm details with the provider before enrolling.</strong></p>
+
+        <h2 id="terms-third-party">4. Third-party course providers and links</h2>
+        <p>When you click a course listing, you will be directed to a third-party website operated by the course provider. FindMyCEUs has no control over those sites and is not responsible for their content, privacy practices, accuracy, terms, pricing, refund policies, course quality, or any other aspect of their operation.</p>
+        <p>Any transactions you complete with a third-party provider &mdash; including purchases, registrations, and subscriptions &mdash; are solely between you and that provider. FindMyCEUs is not a party to those transactions and accepts no responsibility for disputes arising from them.</p>
+        <p>The presence of a course listing on FindMyCEUs does not constitute an endorsement of that provider or course.</p>
+
+        <h2 id="terms-accounts">5. User accounts</h2>
+        <p>FindMyCEUs does not currently offer user accounts. The site is a read-only directory.</p>
+
+        <h2 id="terms-newsletter">6. Newsletter</h2>
+        <p>By subscribing to the FindMyCEUs newsletter, you consent to receive periodic emails about new course listings, free CEU opportunities, and renewal reminders. You may unsubscribe at any time using the link included in every email. We will not use your email address for any purpose other than the newsletter.</p>
+
+        <h2 id="terms-conduct">7. Acceptable use</h2>
+        <p>You agree not to use the Site to:</p>
+        <ul>
+          <li>Violate any applicable law or regulation.</li>
+          <li>Submit false, misleading, or fraudulent information.</li>
+          <li>Attempt to gain unauthorized access to any part of the Site or its systems.</li>
+          <li>Scrape, crawl, or systematically download Site content without our prior written permission.</li>
+          <li>Interfere with the proper functioning of the Site.</li>
+        </ul>
+
+        <h2 id="terms-ip">8. Intellectual property</h2>
+        <p>The FindMyCEUs name, logo, site design, and original written content are owned by FindMyCEUs and may not be reproduced, distributed, or used without prior written permission.</p>
+        <p>Course titles, descriptions, and other content sourced from third-party providers remain the property of their respective owners. We make no claim of ownership over that content.</p>
+
+        <h2 id="terms-liability">9. Disclaimer of warranties and limitation of liability</h2>
+        <p>THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+        <p>TO THE FULLEST EXTENT PERMITTED BY LAW, FINDMYCEUS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF, OR INABILITY TO USE, THE SITE OR ANY COURSE LISTED HEREIN &mdash; INCLUDING BUT NOT LIMITED TO:</p>
+        <ul>
+          <li>Reliance on inaccurate course pricing, availability, or CEU values.</li>
+          <li>Purchases made with a third-party provider that do not result in CEU credit.</li>
+          <li>Any act or omission of a third-party course provider.</li>
+        </ul>
+
+        <h2 id="terms-indemnification">10. Indemnification</h2>
+        <p>You agree to indemnify and hold FindMyCEUs harmless from any claims, losses, damages, or expenses (including reasonable attorneys' fees) arising from your use of the Site, your violation of these Terms, or your violation of any rights of a third party.</p>
+
+        <h2 id="terms-governing">11. Governing law</h2>
+        <p>These Terms are governed by the laws of the United States. Any disputes shall be resolved in the courts of competent jurisdiction. If any provision of these Terms is found to be unenforceable, the remaining provisions will remain in full effect.</p>
+
+        <h2 id="terms-changes">12. Changes to these terms</h2>
+        <p>We may update these Terms at any time. The updated Terms will be posted on this page with a revised effective date. Your continued use of the Site after changes are posted constitutes your acceptance of the new Terms.</p>
+
+        <h2 id="terms-contact">13. Contact us</h2>
+        <p>Questions about these Terms? Contact us at:</p>
+        <p><strong>Email:</strong> <a href="mailto:legal@findmyceus.com">legal@findmyceus.com</a></p>
+
+      </div><!-- /terms of use -->
+
+    </main>
+  </div><!-- /legal-wrap -->
+
+  <Footer />
+</Layout>

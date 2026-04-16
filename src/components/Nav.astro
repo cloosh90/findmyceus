@@ -1,0 +1,16 @@
+---
+export interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = '' } = Astro.props;
+---
+<nav>
+  <a href="/" class="logo">FindMy<span>CEUs</span></a>
+  <div class="nav-links">
+    <a href="/courses" aria-current={currentPage === 'courses' ? 'page' : undefined}>Browse CEUs</a>
+    <a href="/courses?price=free" aria-current={currentPage === 'free' ? 'page' : undefined}>Free CEUs</a>
+    <a href="/courses?cred=CPC" aria-current={currentPage === 'credential' ? 'page' : undefined}>By Credential</a>
+    <a href="/legal" aria-current={currentPage === 'legal' ? 'page' : undefined}>Legal</a>
+  </div>
+</nav>

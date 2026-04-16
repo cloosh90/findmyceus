@@ -1,0 +1,108 @@
+---
+export interface Props {
+  course: {
+    id: string;
+    title: string;
+    provider: string;
+    description: string;
+    price: number;
+    ceus: number;
+    format: string;
+    credentials: string[];
+    specialty: string;
+    url: string;
+    dateAdded: string;
+    featured: boolean;
+    approvedBy: string[];
+    level: string;
+    testRequired: boolean;
+    nextDate: string | null;
+    providerAccount: string | null;
+  };
+}
+
+const { course } = Astro.props;
+
+const isFree = course.price === 0;
+const priceBadge = isFree ? 'Free' : `$${course.price}`;
+const priceBadgeClass = isFree ? 'badge-free' : 'badge-paid';
+
+// Show up to 3 credentials + overflow
+const maxCreds = 3;
+const visibleCreds = course.credentials.slice(0, maxCreds);
+const extraCreds = course.credentials.length - maxCreds;
+
+// Format next date for display
+function formatDate(dateStr: string | null): string {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+---
+<div
+  class="card"
+  data-price={course.price === 0 ? 'free' : String(course.price)}
+  data-format={course.format}
+  data-credentials={course.credentials.join(',')}
+  data-level={course.level}
+  data-ceus={String(course.ceus)}
+  data-approved={course.approvedBy.join(',')}
+  data-title={course.title.toLowerCase()}
+  data-provider={course.provider.toLowerCase()}
+  data-description={course.description.toLowerCase()}
+  data-date={course.dateAdded}
+>
+  <a href={course.url} target="_blank" rel="noopener noreferrer" class="card-link">
+    <div class="card-top">
+      <span class="card-provider">{course.provider}</span>
+      <span class={`badge ${priceBadgeClass}`}>{priceBadge}</span>
+    </div>
+
+    {course.providerAccount === 'membership' && (
+      <div class="card-account-req req-membership">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Membership required
+      </div>
+    )}
+    {course.providerAccount === 'free-account' && (
+      <div class="card-account-req req-free-account">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Free account required
+      </div>
+    )}
+
+    <h3>{course.title}</h3>
+    <p class="card-desc">{course.description}</p>
+
+    <div class="tags">
+      <span class="tag t-ceu">{course.ceus} {course.ceus === 1 ? 'CEU' : 'CEUs'}</span>
+      <span class="tag t-fmt">{course.format}</span>
+      <span class="tag t-level">{course.level}</span>
+      {visibleCreds.map((cred) => (
+        <span class="tag t-cred">{cred}</span>
+      ))}
+      {extraCreds > 0 && (
+        <span class="tag t-cred">+{extraCreds}</span>
+      )}
+    </div>
+
+    {course.testRequired && (
+      <p class="card-quiz-note">&#x2713; Quiz required for credit</p>
+    )}
+
+    {course.nextDate && (course.format === 'Live webinar' || course.format === 'Live virtual' || course.format === 'In-person') && (
+      <div class="card-meta-line">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Next session: {formatDate(course.nextDate)}
+      </div>
+    )}
+
+    {course.approvedBy.length > 0 && (
+      <div class="card-approved-row">
+        {course.approvedBy.map((org) => (
+          <span class="tag t-approved">{org} approved</span>
+        ))}
+      </div>
+    )}
+  </a>
+</div>
