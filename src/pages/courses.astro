@@ -141,7 +141,9 @@ import courses from '../data/courses.json';
 
   // ---- Match a card against current filters ----
   function cardMatches(card) {
-    const price = parseFloat(card.dataset.price);
+    const priceRaw = card.dataset.price;                        // 'free' | '49' | '350' etc.
+    const isFree = priceRaw === 'free';
+    const priceNum = isFree ? 0 : parseFloat(priceRaw);
     const format = card.dataset.format;
     const credentials = card.dataset.credentials ? card.dataset.credentials.split(',') : [];
     const level = card.dataset.level;
@@ -159,10 +161,11 @@ import courses from '../data/courses.json';
 
     // Price match
     if (state.price) {
-      if (state.price === 'free' && price !== 0) return false;
-      if (state.price === 'u50' && price >= 50) return false;
-      if (state.price === 'u100' && price >= 100) return false;
-      if (state.price === 'o100' && price < 100) return false;
+      if (state.price === 'free' && !isFree) return false;
+      if (state.price === 'u50'  && (isFree || priceNum >= 50))  return false;
+      if (state.price === 'u100' && (isFree || priceNum >= 100)) return false;
+      if (state.price === 'o100' && (isFree || priceNum < 100))  return false;
+      if (state.price === 'paid' && isFree)                       return false;
     }
 
     // Format match (multi-select OR logic)
@@ -178,7 +181,7 @@ import courses from '../data/courses.json';
     if (state.levels.length > 0 && !state.levels.includes(level)) return false;
 
     // Min CEUs match
-    if (state.minCeus && ceus < parseFloat(state.minCeus)) return false;
+    if (state.minCeus && ceus < parseFloat(state.minCeus || '0')) return false;
 
     // Approved by match (multi-select OR logic)
     if (state.approvedBy.length > 0) {
@@ -190,13 +193,18 @@ import courses from '../data/courses.json';
   }
 
   // ---- Sort cards ----
+  function getNumericPrice(card) {
+    const raw = card.dataset.price;
+    return raw === 'free' ? 0 : (parseFloat(raw) || 0);
+  }
+
   function sortCards(cards) {
     return cards.slice().sort((a, b) => {
       if (state.sort === 'price-asc') {
-        return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+        return getNumericPrice(a) - getNumericPrice(b);
       }
       if (state.sort === 'price-desc') {
-        return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+        return getNumericPrice(b) - getNumericPrice(a);
       }
       if (state.sort === 'ceus') {
         return parseFloat(b.dataset.ceus) - parseFloat(a.dataset.ceus);
