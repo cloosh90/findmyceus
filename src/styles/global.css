@@ -362,6 +362,7 @@ nav {
   flex-wrap: wrap;
 }
 .card-meta-line svg { flex-shrink: 0; }
+.card-expires { color: #b45309; }
 .card-quiz-note {
   font-size: 11.5px;
   color: var(--text3);
